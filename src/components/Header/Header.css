@@ -1,6 +1,7 @@
 .header {
-  font-family: "Cabinet Grotesk";
+  font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
   font-size: 20px;
+  font-weight: bold;
   display: flex;
   align-items: center;
   padding: 32px 0 28px;
@@ -12,18 +13,16 @@
 
 .header__date-and-location {
   margin: 0;
-  font-weight: 700;
 }
 
 .header__username {
   margin: 0;
-  font-weight: 700;
 }
 
 .header__add-clothes-btn {
   margin: 0 20px 0 auto;
-  font-weight: 700;
   border: none;
+  font-weight: bold;
 }
 
 .header__add-clothes-btn:hover {
