@@ -30,3 +30,7 @@
   overflow: hidden;
   border: 1px solid #0000004D;
 }
+
+.card__image:hover {
+  cursor: pointer;
+}

@@ -71,4 +71,6 @@ Development tasks and feature planning were tracked using Jira.
 - git clone this repo
 - cd se_project_react_WTWR
 - npm install
+- obtain OpenWeatherMap API key
+- create a .env file with VITE_API_KEY=YOUR_KEY
 - npm run dev
