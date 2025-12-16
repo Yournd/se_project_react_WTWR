@@ -68,7 +68,7 @@ Development tasks and feature planning were tracked using Jira.
 
 ## Local Setup
 
-git clone this repo
-cd se_project_react_WTWR
-npm install
-npm run dev
+- git clone this repo
+- cd se_project_react_WTWR
+- npm install
+- npm run dev
