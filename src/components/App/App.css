@@ -5,5 +5,11 @@
 .page__content {
   max-width: 1360px;
   margin: 0 auto;
-  padding: 40px;
+  padding: 24px 40px;
+}
+
+@media screen and (max-width: 768px) {
+  .page_content {
+    padding: 18px 16px 20px;
+  }
 }

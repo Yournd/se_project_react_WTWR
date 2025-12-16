@@ -15,3 +15,13 @@
   list-style-type: none;
   gap: 21px;
 }
+
+@media screen and (max-width: 768px) {
+  .cards_-text {
+    margin: 32px 0 20px 0;
+  }
+
+  .cards__list {
+    gap: 15px;
+  }
+}

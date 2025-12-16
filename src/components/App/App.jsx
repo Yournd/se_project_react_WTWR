@@ -1,13 +1,23 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import './App.css';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import ModalWithForm from '../ModalWithForm/ModalWithForm';
 import ItemModal from '../ItemModal/ItemModal';
+import { getWeather, filterWeatherData } from '../../utils/weatherApi';
+import { coordinates } from '../../utils/constants';
+import Footer from '../Footer/Footer';
 
 function App() {
-  const [weatherData, setWeatherData] = useState({ type: "cold" });
+  const APIkey = import.meta.env.VITE_API_KEY;
+  const [weatherData, setWeatherData] = useState({
+    type: "",
+    temp: { F: 999 },
+    city: "",
+    condition: "",
+    isDay: false
+  });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
 
@@ -24,12 +34,21 @@ function App() {
     setActiveModal("");
   }
 
+  useEffect(() => {
+    getWeather(coordinates, APIkey)
+    .then((data) => {
+      const filteredData = filterWeatherData(data);
+      setWeatherData(filteredData);
+    })
+    .catch(console.error)
+  }, [])
 
   return (
    <div className='app'>
     <div className="page__content">
-      <Header handleAddClick={handleAddClick}/>
-      <Main weatherData={weatherData} handleCardClick={handleCardClick}/>
+      <Header weatherData={weatherData} handleAddClick={handleAddClick}/>
+      <Main handleCardClick={handleCardClick} weatherData={weatherData}/>
+      <Footer />
     </div>
     <ModalWithForm
     buttonText="Add garment"
