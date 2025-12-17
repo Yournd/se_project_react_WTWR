@@ -3,7 +3,7 @@ import './WeatherCard.css';
 
 function WeatherCard({ weatherData }) {
 const weatherOption = weatherOptions.filter((item) => {
-  return (item.day == weatherData.isDay && item.condition == weatherData.condition);
+  return (item.day === weatherData.isDay && item.condition === weatherData.condition);
 })
 
 let filteredOption;
