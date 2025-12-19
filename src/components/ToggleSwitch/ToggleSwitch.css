@@ -1,0 +1,72 @@
+.toggle-switch {
+  padding: 0;
+  margin: 0;
+  width: 56px;
+  height: 28px;
+  border: 2px solid #777;
+  border-radius: 20px;
+  margin-right: 20px;
+  cursor: pointer;
+  position: relative;
+  background: #f3f3f3;
+}
+
+.toggle-switch:hover {
+  border: 2px solid #000000;
+}
+
+.toggle-switch:hover .toggle-switch__circle {
+  transform: translateX(2px) scale(1.1);
+}
+
+.toggle-switch:hover:has(input:checked) .toggle-switch__circle {
+  transform: translateX(-2px) scale(1.1);
+}
+
+.toggle-switch__checkbox {
+  opacity: 0;
+}
+
+.toggle-switch__circle {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 28px;
+  height: 28px;
+  background: #1a1a1a;
+  border-radius: 50%;
+  left: 0;
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.toggle-switch__text {
+  position: absolute;
+  top: 7px;
+  color: #7e7e7e;
+  font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.toggle-switch__text_f {
+  left: 10px;
+}
+
+.toggle-switch__text_c {
+  right: 10px;
+}
+
+.toggle-switch__checkbox:checked ~ .toggle-switch__text_c {
+  color: #ffffff;
+  mix-blend-mode: difference;
+}
+
+.toggle-switch__checkbox:not(:checked) ~ .toggle-switch__text_f {
+  color: #ffffff;
+  mix-blend-mode: difference;
+}
+
+.toggle-switch__checkbox:checked ~ .toggle-switch__circle,
+.toggle-switch__checkbox:checked ~ .toggsle-switch__circle-blend {
+  left: 28px;
+}
