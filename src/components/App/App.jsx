@@ -25,7 +25,7 @@ function App() {
   const [currentTempUnit, setCurrentTempUnit] = useState("F");
 
   const handleToggleSwitchChange = () => {
-    currentTempUnit === "F" ? "C" : "F";
+    currentTempUnit === "F" ? setCurrentTempUnit("C") : setCurrentTempUnit("F");
   };
 
   const handleCardClick = (card) => {
