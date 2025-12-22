@@ -16,12 +16,11 @@ function WeatherCard({ weatherData }) {
   } else {
     filteredOption = weatherOption[0];
   }
-  console.log(currentTempUnit);
 
   return (
     <section className="weather-card">
       <p className="weather-card__temp">
-        {currentTempUnit === "F" ? weatherData.temp.F : weatherData.temp.C}°{currentTempUnit}
+        {weatherData.temp[currentTempUnit]}°{currentTempUnit}
       </p>
       <img
         src={filteredOption?.url}
