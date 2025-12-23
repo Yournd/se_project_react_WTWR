@@ -10,6 +10,8 @@ import { coordinates, defaultClothingItems } from "../../utils/constants";
 import Footer from "../Footer/Footer";
 import CurrentTempUnitContext from "../../contexts/CurrentTempUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
+import Profile from "../Profile/Profile";
+import ProfileMobileModal from "../ProfileMobileModal/ProfileMobileModal";
 
 function App() {
   const apiKey = import.meta.env.VITE_API_KEY;
@@ -48,6 +50,10 @@ function App() {
     setActiveModal("add-garment");
   };
 
+  const handleMobileProfileClick = () => {
+    setActiveModal("profile");
+  };
+
   const handleClose = () => {
     setActiveModal("");
   };
@@ -65,7 +71,11 @@ function App() {
     <CurrentTempUnitContext.Provider value={{ currentTempUnit, handleToggleSwitchChange }}>
       <div className="app">
         <div className="page__content">
-          <Header weatherData={weatherData} handleAddClick={handleAddClick} />
+          <Header
+            weatherData={weatherData}
+            handleAddClick={handleAddClick}
+            onMobileProfileClick={handleMobileProfileClick}
+          />
           <Routes>
             <Route
               path="/"
@@ -77,7 +87,10 @@ function App() {
                 />
               }
             />
-            <Route path="/profile" />
+            <Route
+              path="/profile"
+              element={<Profile clothingItems={clothingItems} handleCardClick={handleCardClick} />}
+            />
           </Routes>
           <Footer />
         </div>
@@ -87,6 +100,11 @@ function App() {
           handleAddItem={handleAddItem}
         />
         <ItemModal isOpen={activeModal === "preview"} card={selectedCard} handleClose={handleClose} />
+        <ProfileMobileModal
+          isOpen={activeModal === "profile"}
+          handleClose={handleClose}
+          onAddClick={handleAddClick}
+        />
       </div>
     </CurrentTempUnitContext.Provider>
   );

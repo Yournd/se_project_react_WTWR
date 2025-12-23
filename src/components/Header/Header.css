@@ -34,7 +34,7 @@
 .header__add-clothes-btn:hover {
   cursor: pointer;
   opacity: 70%;
-  transition: opacity .1s ease-in-out;
+  transition: opacity 0.1s ease-in-out;
 }
 
 .header__user-wrapper {
@@ -62,6 +62,14 @@
   width: 45px;
   height: 45px;
   overflow: hidden;
+}
+
+.header__avatar {
+  height: 40px;
+  flex: 0 0 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
 }
 
 @media screen and (max-width: 768px) {

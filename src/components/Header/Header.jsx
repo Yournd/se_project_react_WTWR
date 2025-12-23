@@ -5,7 +5,7 @@ import logo from "../../assets/wtwr-logo.svg";
 import profileBtn from "../../assets/profile-btn.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
-function Header({ weatherData, handleAddClick }) {
+function Header({ weatherData, handleAddClick, onMobileProfileClick }) {
   const currentDate = new Date().toLocaleString("default", { month: "long", day: "numeric" });
 
   const isDesktop = useMediaQuery({
@@ -32,7 +32,7 @@ function Header({ weatherData, handleAddClick }) {
           </div>
         </div>
       ) : (
-        <button className="header__mobile-profile-btn">
+        <button onClick={onMobileProfileClick} className="header__mobile-profile-btn">
           <img src={profileBtn} alt="Profile Button" className="header__profile-btn" />
         </button>
       )}

@@ -1,0 +1,73 @@
+.mobile-profile {
+  position: relative;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  box-shadow: 0px 2px 8px 0px #0000001a;
+  border-radius: 10px;
+  padding: 60px 40px 40px;
+  width: 100%;
+  font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.modal_type_mobile {
+  position: fixed;
+  bottom: auto;
+  background-color: transparent;
+  padding: 18px;
+}
+
+.mobile-profile__close-btn {
+  position: absolute;
+  height: 21px;
+  width: 21px;
+  top: 11px;
+  right: 11px;
+  background: none;
+  border: none;
+}
+
+.mobile-profile__close-btn:hover {
+  opacity: 70%;
+  cursor: pointer;
+}
+
+.mobile-profile__profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.mobile-profile__user-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-profile__username {
+  margin: 0;
+}
+
+.mobile-profile__avatar {
+  height: 40px;
+  flex: 0 0 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin-left: 12px;
+}
+
+.mobile-profile__add-clothes-btn {
+  border: none;
+  background: none;
+  line-height: 24px;
+}
+
+.mobile-profile__add-clothes-btn:hover {
+  cursor: pointer;
+  opacity: 70%;
+  transition: opacity 0.1s ease-in-out;
+}
