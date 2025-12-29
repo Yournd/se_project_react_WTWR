@@ -1,7 +1,8 @@
 .profile {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
   margin-top: 19px;
+  gap: 116px;
 }
 
 @media screen and (max-width: 768px) {
