@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import "./Header.css";
 import avatar from "../../assets/avatar.png";
@@ -15,7 +16,9 @@ function Header({ weatherData, handleAddClick, onMobileProfileClick }) {
   return (
     <header className="header">
       <div className="header__logo-wrapper">
-        <img className="header__logo" src={logo} alt="WTWR Logo" />
+        <NavLink className="header__nav-link" to="/">
+          <img className="header__logo" src={logo} alt="WTWR Logo" />
+        </NavLink>
         <p className="header__date-and-location">
           {currentDate}, {weatherData.city}
         </p>
@@ -26,10 +29,10 @@ function Header({ weatherData, handleAddClick, onMobileProfileClick }) {
           <button type="button" onClick={handleAddClick} className="header__add-clothes-btn">
             + Add Clothes
           </button>
-          <div className="header__user-wrapper">
+          <NavLink className="header__nav-link" to="/profile">
             <p className="header__username">Terrence Tegegne</p>
             <img src={avatar} alt="Avatar Photo" className="header__avatar" />
-          </div>
+          </NavLink>
         </div>
       ) : (
         <button onClick={onMobileProfileClick} className="header__mobile-profile-btn">
