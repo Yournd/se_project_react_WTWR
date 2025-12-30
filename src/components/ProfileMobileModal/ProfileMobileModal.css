@@ -71,3 +71,8 @@
   opacity: 70%;
   transition: opacity 0.1s ease-in-out;
 }
+
+.mobile-profile__nav-link {
+  color: #000000;
+  text-decoration: none;
+}

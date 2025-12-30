@@ -6,12 +6,14 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
-import { coordinates, defaultClothingItems } from "../../utils/constants";
+import { coordinates } from "../../utils/constants";
 import Footer from "../Footer/Footer";
 import CurrentTempUnitContext from "../../contexts/CurrentTempUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
 import ProfileMobileModal from "../ProfileMobileModal/ProfileMobileModal";
+import { addItem, getItems, removeItem } from "../../utils/api";
+import DeleteModal from "../DeleteModal/DeleteModal";
 
 function App() {
   const apiKey = import.meta.env.VITE_API_KEY;
@@ -24,17 +26,35 @@ function App() {
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState([]);
   const [currentTempUnit, setCurrentTempUnit] = useState("F");
+
+  const handleConfirmDelete = () => {
+    setActiveModal("delete");
+  };
+
+  const handleDelete = (id) => {
+    removeItem(id)
+      .then(() => {
+        const newData = clothingItems.filter((item) => item._id !== selectedCard._id);
+        setClothingItems(newData);
+        handleClose();
+      })
+      .catch(console.error);
+  };
 
   const handleAddItem = (data) => {
     const newCardData = {
       name: data.name,
-      link: data.link,
+      imageUrl: data.imageUrl,
       weather: data.weather,
     };
-    setClothingItems([...clothingItems, newCardData]);
-    handleClose();
+    addItem(newCardData)
+      .then((data) => {
+        setClothingItems([data, ...clothingItems]);
+        handleClose();
+      })
+      .catch(console.error);
   };
 
   const handleToggleSwitchChange = () => {
@@ -63,6 +83,13 @@ function App() {
       .then((data) => {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
+      })
+      .catch(console.error);
+
+    getItems()
+      .then((data) => {
+        data.reverse();
+        setClothingItems(data);
       })
       .catch(console.error);
   }, []);
@@ -105,11 +132,22 @@ function App() {
           handleClose={handleClose}
           handleAddItem={handleAddItem}
         />
-        <ItemModal isOpen={activeModal === "preview"} card={selectedCard} handleClose={handleClose} />
+        <ItemModal
+          isOpen={activeModal === "preview"}
+          card={selectedCard}
+          handleDeleteClick={handleConfirmDelete}
+          handleClose={handleClose}
+        />
         <ProfileMobileModal
           isOpen={activeModal === "profile"}
           handleClose={handleClose}
           onAddClick={handleAddClick}
+        />
+        <DeleteModal
+          card={selectedCard}
+          isOpen={activeModal === "delete"}
+          handleClose={handleClose}
+          handleDelete={handleDelete}
         />
       </div>
     </CurrentTempUnitContext.Provider>

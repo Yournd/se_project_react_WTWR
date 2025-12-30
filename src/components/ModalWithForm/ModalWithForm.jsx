@@ -4,7 +4,7 @@ import closeBtn from "../../assets/close.svg";
 function ModalWithForm({ isOpen, children, buttonText, title, handleClose, name, onSubmit }) {
   return (
     <div className={`modal modal_type_${name} ${isOpen ? "modal_opened" : ""}`}>
-      <div className="modal__content">
+      <div className="modal__content modal__content_type_form">
         <h2 className="modal__title">{title}</h2>
         <button onClick={handleClose} type="button" className="modal__close">
           <img src={closeBtn} alt="Modal Close Button" />
