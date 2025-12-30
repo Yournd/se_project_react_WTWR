@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useForm } from "../../hooks/useForm";
 import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
@@ -6,9 +7,9 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
-import { coordinates } from "../../utils/constants";
+import { coordinates, defaultValues } from "../../utils/constants";
 import Footer from "../Footer/Footer";
-import CurrentTempUnitContext from "../../contexts/CurrentTempUnitContext";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
 import ProfileMobileModal from "../ProfileMobileModal/ProfileMobileModal";
@@ -27,7 +28,9 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
-  const [currentTempUnit, setCurrentTempUnit] = useState("F");
+  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+
+  const { values, setValues, handleChange } = useForm(defaultValues);
 
   const handleConfirmDelete = () => {
     setActiveModal("delete");
@@ -58,7 +61,7 @@ function App() {
   };
 
   const handleToggleSwitchChange = () => {
-    currentTempUnit === "F" ? setCurrentTempUnit("C") : setCurrentTempUnit("F");
+    currentTemperatureUnit === "F" ? setCurrentTemperatureUnit("C") : setCurrentTemperatureUnit("F");
   };
 
   const handleCardClick = (card) => {
@@ -67,6 +70,7 @@ function App() {
   };
 
   const handleAddClick = () => {
+    setValues(defaultValues);
     setActiveModal("add-garment");
   };
 
@@ -95,7 +99,7 @@ function App() {
   }, []);
 
   return (
-    <CurrentTempUnitContext.Provider value={{ currentTempUnit, handleToggleSwitchChange }}>
+    <CurrentTemperatureUnitContext.Provider value={{ currentTemperatureUnit, handleToggleSwitchChange }}>
       <div className="app">
         <div className="page__content">
           <Header
@@ -131,6 +135,8 @@ function App() {
           isOpen={activeModal === "add-garment"}
           handleClose={handleClose}
           handleAddItem={handleAddItem}
+          values={values}
+          handleChange={handleChange}
         />
         <ItemModal
           isOpen={activeModal === "preview"}
@@ -150,7 +156,7 @@ function App() {
           handleDelete={handleDelete}
         />
       </div>
-    </CurrentTempUnitContext.Provider>
+    </CurrentTemperatureUnitContext.Provider>
   );
 }
 

@@ -74,6 +74,12 @@ export const defaultWeatherOptions = {
   },
 };
 
+export const defaultValues = {
+  name: "",
+  imageUrl: "",
+  weather: "",
+};
+
 export const coordinates = {
   latitude: 36.52,
   longitude: -94.61,
