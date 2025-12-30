@@ -75,3 +75,8 @@ Development tasks and feature planning were tracked using Jira.
 - obtain OpenWeatherMap API key
 - create a .env file with VITE_API_KEY=YOUR_KEY
 - npm run dev
+
+## Project Pitch Video
+
+Check out [this video](https://www.loom.com/share/4a9348aa16f445f4bf42828a89204618), where I describe my
+project and some challenges I faced while building it.
